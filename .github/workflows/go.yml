@@ -71,8 +71,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}-${{ github.event.inputs.version }}
-        release_name: Release ${{ github.ref }}-${{ github.event.inputs.version }}
+        tag_name: ${{ github.event.inputs.version }}
+        release_name: Release ${{ github.event.inputs.version }}
         draft: true
 
     - name: Upload Linux 32 bit Release 
@@ -114,3 +114,14 @@ jobs:
         asset_path: main/oec-64-win.exe
         asset_name: oec-64-win.exe
         asset_content_type: application/octet-stream
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Release Artifacts
+        path: |
+          main/**
+          !main/main.go
+    - name: Publish Release
+      uses: eregon/publish-release@v1.0.3
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
