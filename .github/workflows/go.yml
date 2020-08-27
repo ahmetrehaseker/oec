@@ -111,7 +111,8 @@ jobs:
         asset_name: oec-64-win.exe
         asset_content_type: application/octet-stream
         
-    - uses: actions/upload-artifact@v2
+    - name: Upload Artifacts 
+      uses: actions/upload-artifact@v2
       with:
         name: Release Artifacts
         path: |
