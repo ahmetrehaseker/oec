@@ -6,14 +6,11 @@ on:
       version:
         description: 'Version'     
         required: true
-      tags:
-        description: 'Test scenario tags'  
-
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
 
     - name: Set up Go 1.x
