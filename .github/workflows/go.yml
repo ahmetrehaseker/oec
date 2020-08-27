@@ -37,12 +37,10 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
-        
-    - name: Move
-      run: cd main  
     
     - name: Build
       run: go build -v
+      working-directory: main
 
     - name: Test
       run: go test -v .
