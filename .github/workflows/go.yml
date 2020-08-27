@@ -9,10 +9,6 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'  
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
 
@@ -38,6 +34,30 @@ jobs:
             dep ensure
         fi
     
-    - name: Build
-      run: go build -v
+    - name: Build Linux 32
+      run: go build -v -o oec-32-linux
       working-directory: main
+      env:
+        GOOS: linux 
+        GOARCH: 386
+
+    - name: Build Linux 64
+      run: go build -v -o oec-64-linux
+      working-directory: main
+      env:
+        GOOS: linux 
+        GOARCH: amd64
+  
+    - name: Build Win 32
+      run: go build -v -o oec-32-win
+      working-directory: main
+      env:
+        GOOS: windows 
+        GOARCH: 386
+        
+    - name: Build Win 64
+      run: go build -v -o oec-64-win
+      working-directory: main
+      env:
+        GOOS: windows 
+        GOARCH: amd64
