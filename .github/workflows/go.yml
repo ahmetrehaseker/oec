@@ -34,7 +34,7 @@ jobs:
         fi
 
     - name: Build Linux 64
-      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{version}}" -o ../.release/oec-packages-linux/OpsgenieEdgeConnector main.go
+      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{ github.event.inputs.version }}" -o ../.release/oec-packages-linux/OpsgenieEdgeConnector main.go
       working-directory: main
       if: success() 
       env:
@@ -58,7 +58,7 @@ jobs:
         GO111MODULE: on
   
     - name: Build Win 32
-      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{version}}" -o ../.release/oec-packages-win32/OpsgenieEdgeConnector32.exe main.go
+      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{ github.event.inputs.version }}" -o ../.release/oec-packages-win32/OpsgenieEdgeConnector32.exe main.go
       working-directory: main
       if: success() 
       env:
@@ -82,7 +82,7 @@ jobs:
         GO111MODULE: on
   
     - name: Build Win 64
-      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{version}}" -o ../.release/oec-packages-win64/OpsgenieEdgeConnector64.exe main.go
+      run: go build -mod=vendor -a -ldflags "-X main.OECCommitVersion=$GITHUB_SHA -X main.OECVersion=${{ github.event.inputs.version }}" -o ../.release/oec-packages-win64/OpsgenieEdgeConnector64.exe main.go
       working-directory: main
       if: success() 
       env:
