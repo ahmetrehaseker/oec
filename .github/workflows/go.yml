@@ -45,10 +45,10 @@ jobs:
 
     - uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r .release/oec-linux-amd64.zip .release/oec-packages-linux/
+        args: zip -qq -j -r .release/oec-linux-amd64.zip .release/oec-packages-linux/
 
     - name: Build Win 32 Service
-      run: go build -mod=vendor -o .release/oec-packages-win32/oecService32.exe oecService.go
+      run: go build -mod=vendor -o ../../.release/oec-packages-win32/oecService32.exe oecService.go
       working-directory: windows_service/main
       if: success() 
       env:
@@ -69,10 +69,10 @@ jobs:
     
     - uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r .release/oec-win-386.zip .release/oec-packages-win32/
+        args: zip -qq -j -r .release/oec-win-386.zip .release/oec-packages-win32/
 
     - name: Build Win 64 Service
-      run: go build -mod=vendor -o .release/oec-packages-win32/oecService32.exe oecService.go
+      run: go build -mod=vendor -o ../../.release/oec-packages-win32/oecService32.exe oecService.go
       working-directory: windows_service/main
       if: success() 
       env:
@@ -93,7 +93,7 @@ jobs:
     
     - uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r .release/oec-win-amd64.zip .release/oec-packages-win64/
+        args: zip -qq -j -r .release/oec-win-amd64.zip .release/oec-packages-win64/
 
     - name: Create Release
       id: create_release
